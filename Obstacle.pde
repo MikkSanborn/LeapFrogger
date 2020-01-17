@@ -3,6 +3,7 @@ abstract class Obstacle {
   int w, h; // usually 1x1
   
   color c; // or texture
+  Texture t;
   
   void display() {
     noStroke();

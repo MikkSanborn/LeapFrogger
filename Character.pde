@@ -2,11 +2,12 @@ abstract class Character {
   float x; // float for when on moving objects
   float y; // floar for jumoing forwards/back
   
-  
+  abstract void display();
 }
 
 class NonPlayerCharacter extends Character {
-  
+  void display() {
+  }
 }
 
 class PlayerCharacter extends Character {
@@ -19,5 +20,8 @@ class PlayerCharacter extends Character {
   
   boolean isColliding(Obstacle o) {
     return (x >= o.x && y >= o.y && x+w <= o.x+o.w && y+h <= o.y+o.h);
+  }
+  
+  void display() {
   }
 }
