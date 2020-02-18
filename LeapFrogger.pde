@@ -1,8 +1,14 @@
 /*
-Is there just one level, that is the same (aside from intro/ctrls)?
 
-Maybe have a mini "hand" display on the side to show relative loc and stuff.
-*/
+Task list:
+
+
+
+
+Is there just one level, that is the same (aside from intro/ctrls)?
+ 
+ Maybe have a mini "hand" display on the side to show relative loc and stuff.
+ */
 
 import de.voidplus.leapmotion.*;
 
@@ -31,8 +37,9 @@ int score = 0;
 // Scoring variables/values
 final int pointsForJump = 10; // jumping forwars
 // other points, check with Kaia
-//
-//
+// getting the fly (100)
+// pink frog (on log, 50)
+// 
 
 // Done loading?
 int load_finished = 0;
@@ -40,68 +47,74 @@ int load_finished = 0;
 void setup() {
   size(700, 600);
   leap = new LeapMotion(this);
-  
+
   gameState = GameState.Load;
-  
+
   Thread imageLoader = new Thread() {
     @Override
-    public void run() {
-      screen_background = loadImage("sheet.png").get(1, 1, 255, 221);
+      public void run() {
+      PImage sheet = loadImage("sheet.png");
+      screen_background = sheet.get(1, 1, 255, 221);
       screen_background.resize(500, 500);
+      water_background = new Texture(new PImage[] {sheet.get(1, 228, 256, 80), sheet.get(1, 228+85, 256, 80), sheet.get(1, 228+85*2, 256, 80), sheet.get(1, 228+85*3, 256, 80), sheet.get(1, 228+85*4, 256, 80), sheet.get(1, 228+85*5, 256, 80), sheet.get(1, 228+85*6, 256, 80), sheet.get(1, 228+85*7, 256, 80)}); // 8 total, 5px down from the prev
       // other image loads
+      // obstacles.add(new NPC())
+      for (int i = 0; i < water_background.frames.length; i++) {
+        water_background.frames[i].resize(500, 180);
+      }
       load_finished++;
     }
   };
-  
+
   imageLoader.start();
-  
-  frog = new PlayerCharacter();
-  
+
+  frog = new PlayerCharacter(null, 400, 400);
+
   background(0);
   stroke(255);
-  
+
   load_finished++;
 }
 
 void draw() {
   background(0);
-  
+
   switch (gameState) {
-    case Play:
-      drawGame();
-      updateGameFrame();
-      break;
-    
-    case Pause:
-      drawGame();
-      // pause overlay
-      break;
-    
-    case Load:
-      background(255);
-      fill(0);
-      text("Loading...", 200, 200);
-      // text: loading assets...
-      // maybe when almost done use some frame count variable to make the textures come on
-      if (load_finished >= 2) {
-        gameState = GameState.Main;
-      }
-      break;
-    
-    case Main:
-      drawGame();
-      updateGameFrame(); // pretty background (just has moving thingies)
-      break;
-    
-    case Dead:
-      drawGame();
-      updateGameFrame();
-      // respawn / respawn timer
-      break;
-    
-    default:
-      gameState = GameState.Load;
-      break;
+  case Play:
+    drawGame();
+    updateGameFrame();
+    break;
+
+  case Pause:
+    drawGame();
+    // pause overlay
+    break;
+
+  case Load:
+    background(255);
+    fill(0);
+    text("Loading...", 200, 200);
+    // text: loading assets...
+    // maybe when almost done use some frame count variable to make the textures come on
+    if (load_finished >= 2) {
+      gameState = GameState.Main;
+    }
+    break;
+
+  case Main:
+    drawGame();
+    updateGameFrame(); // pretty background (just has moving thingies)
+    break;
+
+  case Dead:
+    drawGame();
+    updateGameFrame();
+    // respawn / respawn timer
+    break;
+
+  default:
+    gameState = GameState.Load;
+    break;
   }
 }
 
@@ -109,18 +122,23 @@ void drawGame() {
   background(255);
   // draw the background image here
   // image(screen_background, 0, 0, screen_background.width*2, screen_background.height*2);
-  image(screen_background, 0, 0, width, height);
+  image(screen_background, 0, 0);
+  image(water_background.thisFrame(), 0, 53);
   frog.display();
   // draw all objects based on their current positions. Don't do any variable updating (update all frames?, to continue animating things?)
   for (int i = 0; i < obstacles.size(); i++) {
     obstacles.get(i).display();
   }
   fill(0);
-  text("game", 200, 200);
+  text("game", 600, 50);
+  text("score", 600, 150);
 }
 
 void updateGameFrame() {
   // change variables (move logs by speed, move frog by speed
+  if (frameCount%5 == 0) {
+    water_background.nextFrame(); // all frame increments to be done here.
+  }
   fill(0);
   text("updated game", 200, 250);
 }
