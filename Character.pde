@@ -7,7 +7,8 @@ abstract class Character extends Obstacle {
   abstract void display();
 }
 
-class NonPlayerCharacter extends Character {
+// maybe kill this???
+class NonPlayerCharacter extends Character { // what are npc's?
 
   public NonPlayerCharacter(Texture t, float x, float y, float w, float h) {
     super(t, x, y, w, h);

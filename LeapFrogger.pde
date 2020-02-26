@@ -1,20 +1,14 @@
 /*
+CarObstacle(Texture t, float x, float y, float xs, float ys, float x_bound, float w, float h)
+LogObstacle(Texture t, float x, float y, float w, float h)
 
-Task list:
-
-
-
-
-Is there just one level, that is the same (aside from intro/ctrls)?
- 
- Maybe have a mini "hand" display on the side to show relative loc and stuff.
- */
+*/
 
 import de.voidplus.leapmotion.*;
 
 // Program variables
 LeapMotion leap;
-final int targetFrameRate = 0;
+final int targetFrameRate = 20;
 
 // Game variables
 GameState gameState;
@@ -58,7 +52,15 @@ void setup() {
       screen_background.resize(500, 500);
       water_background = new Texture(new PImage[] {sheet.get(1, 228, 256, 80), sheet.get(1, 228+85, 256, 80), sheet.get(1, 228+85*2, 256, 80), sheet.get(1, 228+85*3, 256, 80), sheet.get(1, 228+85*4, 256, 80), sheet.get(1, 228+85*5, 256, 80), sheet.get(1, 228+85*6, 256, 80), sheet.get(1, 228+85*7, 256, 80)}); // 8 total, 5px down from the prev
       // other image loads
-      // obstacles.add(new NPC())
+      
+      // ADD ALL OBSTACLES
+      
+      // ADD ALL IMAGES FOR EACH OBJECT
+      // long log
+      obstacles.add(new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false));
+      // log 1
+      // log 2
+      
       for (int i = 0; i < water_background.frames.length; i++) {
         water_background.frames[i].resize(500, 180);
       }
@@ -72,6 +74,8 @@ void setup() {
 
   background(0);
   stroke(255);
+  
+  frameRate(targetFrameRate);
 
   load_finished++;
 }
@@ -138,6 +142,11 @@ void updateGameFrame() {
   // change variables (move logs by speed, move frog by speed
   if (frameCount%5 == 0) {
     water_background.nextFrame(); // all frame increments to be done here.
+  }
+  for (Obstacle o : obstacles) {
+    if (o instanceof MoveableObstacle) {
+      ((MoveableObstacle) o).move(); 
+    }
   }
   fill(0);
   text("updated game", 200, 250);
