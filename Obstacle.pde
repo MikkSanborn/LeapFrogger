@@ -73,6 +73,16 @@ class LogObstacle extends MoveableObstacle {
   
 }
 
+class TurtleObstacle extends LogObstacle {
+  // eventually make a blink out method.
+  boolean blinksOut;
+  
+  public TurtleObstacle(Texture t, float x, float y, float w, float h, boolean blinksOut) {
+    super(t, x, y, w, h, false);
+    this.blinksOut = blinksOut;
+  }
+}
+
 // i.e. ?
 class StaticObstacle extends Obstacle {
   public StaticObstacle(Texture t, float x, float y, float w, float h) {

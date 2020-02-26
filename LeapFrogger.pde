@@ -8,11 +8,26 @@ import de.voidplus.leapmotion.*;
 
 // Program variables
 LeapMotion leap;
+
 final int targetFrameRate = 20;
 
 // Game variables
 GameState gameState;
-ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+// ALL OBSTACLE VARS
+// 5 lanes, LOOK AT "THINGIES" TAB FOR INFO
+CarObstacle car_1_0 = null;
+
+// Water
+// Logs
+LogObstacle turle_7_0 = null;
+LogObstacle log_8_0 = null;
+LogObstacle turtle_9_0 = null;
+LogObstacle log_10_0 = null;
+
 final short maxLives = 3;
 PImage screen_background;
 Texture water_background;
@@ -39,7 +54,7 @@ final int pointsForJump = 10; // jumping forwars
 int load_finished = 0;
 
 void setup() {
-  size(700, 600);
+  size(800, 600);
   leap = new LeapMotion(this);
 
   gameState = GameState.Load;
@@ -56,10 +71,12 @@ void setup() {
       // ADD ALL OBSTACLES
       
       // ADD ALL IMAGES FOR EACH OBJECT
-      // long log
-      obstacles.add(new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false));
-      // log 1
-      // log 2
+      // logs (all of them)
+      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      
       
       for (int i = 0; i < water_background.frames.length; i++) {
         water_background.frames[i].resize(500, 180);
@@ -153,9 +170,9 @@ void updateGameFrame() {
 }
 
 float getScreenPosX(float tilePosX) { // if the board is a 16x16 square, with a border of 12px, return tilePosX*((width-12*$2.0)/16)
-  return 0;
+  return ;
 }
 
 float getScreenPosY(float tilePosY) { // if the board is a 16x16 square, with a border of 12px, return tilePosY*((height-12*$2.0)/16)
-  return 0;
+  return height-30*tilePosY;
 }
