@@ -198,6 +198,8 @@ void drawGame() {
   log_10_1.display();
   log_10_2.display();
   log_10_3.display();
+  
+  frog.display();
 
   fill(0);
   text("game", 600, 50);
@@ -227,6 +229,8 @@ void updateGameFrame() {
   log_10_1.move();
   log_10_2.move();
   log_10_3.move();
+
+  frog.move();
 
   fill(0);
   text("updated game", 200, 250);
