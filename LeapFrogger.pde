@@ -2,7 +2,7 @@
 CarObstacle(Texture t, float x, float y, float xs, float ys, float x_bound, float w, float h)
  LogObstacle(Texture t, float x, float y, float w, float h)
  
-*/
+ */
 
 import de.voidplus.leapmotion.*;
 
@@ -89,15 +89,20 @@ void setup() {
       // shorter new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
       // shortest new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
 
-      turtle_7_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(0), 111, 111, 0.6, 600, false);
-      turtle_7_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(0), 111, 111, 0.6, 600, false);
-      turtle_7_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(0), 111, 111, 0.6, 600, false);
+      turtle_7_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(7), 111, 111, 0.6, 600, false);
+      turtle_7_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(7), 111, 111, 0.6, 600, false);
+      turtle_7_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(7), 111, 111, 0.6, 600, false);
       // turtle_7_3 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(0), 111, 111, 0.6, false);
 
       log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(2), 112, 30, 1, 600, false);
       log_8_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(0), getScreenPosY(2), 144, 30, 1, 600, false);
       log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(2), 112, 30, 1, 600, false);
       log_8_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(0), getScreenPosY(2), 144, 30, 1, 600, false);
+
+      turtle_9_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(9), 111, 111, 0.6, 600, false);
+      turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(9), 111, 111, 0.6, 600, false);
+      turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(9), 111, 111, 0.6, 600, false);
+      turtle_9_3 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(9), 111, 111, 0.6, 600, false);
 
       log_10_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(2), 64, 30, -1.2, 600, false);
       log_10_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 288, 30, -1.2, 600, false);
