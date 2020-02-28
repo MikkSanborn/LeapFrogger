@@ -44,6 +44,14 @@ class Texture {
   PImage[] getFrames() {
     return frames;
   }
+  
+  int currentFrameNum() {
+    return frame;
+  }
+  
+  int numFrames() {
+    return frames.length;
+  }
 }
 
 enum Direction {
