@@ -3,7 +3,7 @@ class PlayerCharacter extends Obstacle {
   public final static float w = 30;
   public final static float h = 30;
 
-  float yaw, pitch, roll, y, p, r;
+  float yaw, pitch, roll, p, r;
   float posX, posY, PX, PY;
   float carXS, carYS, carYD, carXD;
   int loopH, loopV;
@@ -40,13 +40,19 @@ class PlayerCharacter extends Obstacle {
   }
   
   void display() {
+     super.display();
+    //noStroke();
+    //image(t.currentFrame(), x, y, w, h);
+    
+    
+  
     //draw stuff
     fill(0);
-    ellipse(getScreenPosX(trackH+1), getScreenPosY(trackV), 50, 50);
+    //ellipse(getScreenPosX(trackH+1), getScreenPosY(trackV), 50, 50);
 
     //debug
     fill(0);
-    rect(0, 0, 300, 180);    
+    // rect(0, 0, 300, 180);    
     fill(255);
     textSize(20);
     text("Yaw: " + yaw, 0, 30);
@@ -57,18 +63,21 @@ class PlayerCharacter extends Obstacle {
   }
 
   void move() {
+    
+    
+    
     // background(0);
-    background(255);
+    // background(255);
 
     long timeNow = millis();
     if (timeNow-timeLastInput > timing) {
 
 
       for (Hand hand : leap.getHands()) {
-        y = hand.getYaw();
+        // y = hand.getYaw();
         p = hand.getPitch();
         r = hand.getRoll();
-        yaw = map(y, -180, 180, -90, 90);
+      //  yaw = map(y, -180, 180, -90, 90);
         pitch = map(p, -180, 180, -90, 90);
         roll = map(r, -180, 180, -90, 90);
 
@@ -89,19 +98,24 @@ class PlayerCharacter extends Obstacle {
           timeLastInput = timeNow;
         }
 
-        if (trackV > 9) {
-          trackV = 9;
+        if (trackV > 11) {
+          trackV = 11;
         } else if (trackV <0) {
           trackV = 0;
         }
-        if (trackH >9) {
-          trackH = 9;
+        if (trackH >11) {
+          trackH = 11;
         } else if (trackH <0) {
           trackH = 0;
         }
 
         //
         //delay(20);
+        
+        x = getScreenPosX(trackH);
+        println(trackV + "   " + y);
+        y = getScreenPosY(trackV);
+        
       }
     }
 

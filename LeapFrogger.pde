@@ -109,6 +109,7 @@ void setup() {
       log_10_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(2), 64, 30, -1.2, 600, false);
       log_10_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 288, 30, -1.2, 600, false);
 
+      frog = new PlayerCharacter(new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)}), 400, 400);
 
       for (int i = 0; i < water_background.frames.length; i++) {
         water_background.frames[i].resize(500, 180);
@@ -119,7 +120,7 @@ void setup() {
 
   imageLoader.start();
 
-  frog = new PlayerCharacter(null, 400, 400);
+  // frog = new PlayerCharacter(null, 400, 400);
 
   background(0);
   stroke(255);
@@ -133,6 +134,7 @@ void setup() {
 
 void draw() {
   background(0);
+  // println(gameState);
 
   switch (gameState) {
   case Play:
@@ -241,5 +243,5 @@ float getScreenPosX(float tilePosX) { // if the board is a 16x16 square, with a 
 }
 
 float getScreenPosY(float tilePosY) { // if the board is a 16x16 square, with a border of 12px, return tilePosY*((height-12*$2.0)/16)
-  return height-30*tilePosY;
+  return height-30-40*tilePosY;
 }
