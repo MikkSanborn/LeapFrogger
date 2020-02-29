@@ -15,13 +15,6 @@ class Texture {
     this.frame = 0;
   }
 
-  /*
-  @Deprecated
-   Texture(PImage spritesheet, int startX, int startY, int w, int y, Direction direction) {
-   // too much work
-   }
-   */
-
   PImage thisFrame() {
     return frames[frame];
   }

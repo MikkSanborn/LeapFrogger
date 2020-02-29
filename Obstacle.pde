@@ -23,11 +23,11 @@ abstract class Obstacle {
 
   void display() {
     noStroke();
-    image(t.currentFrame(), x, y, w, h);
+    image(t.currentFrame(), x+w/2, y+h/2, w, h);
   }
 }
 
-class MoveableObstacle extends Obstacle {
+abstract class MoveableObstacle extends Obstacle {
   float x_bound; // the boundary of the x where the car should "teleport" back to the other side.
 
   public MoveableObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
@@ -39,6 +39,11 @@ class MoveableObstacle extends Obstacle {
   public void move() {
     super.x+=xs;
     
+    if (super.x-super.w > 500+x_bound) {
+      super.x = -super.w-x_bound;
+    } else if (super.x+super.w < -x_bound) {
+      super.x = 500+x_bound;
+    }
     // don't actually set to -x_bound
     // if x>x_bound, x = -x_bound
   }
@@ -69,11 +74,9 @@ class CarObstacle extends MoveableObstacle {
 
 // a moving log, can be a croco
 class LogObstacle extends MoveableObstacle {
-  boolean isCrocodile; // maybe make (another) separate class?, there's also those bot-thingies
 
-  public LogObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound, boolean isCrocodile) {
+  public LogObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
     super(t, x, y, w, h, xs, x_bound);
-    this.isCrocodile = isCrocodile;
   }
   
 }
@@ -83,7 +86,7 @@ class TurtleObstacle extends LogObstacle {
   boolean blinksOut;
   
   public TurtleObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound, boolean blinksOut) {
-    super(t, x, y, w, h, xs, x_bound, false);
+    super(t, x, y, w, h, xs, x_bound);
     this.blinksOut = blinksOut;
   }
   
@@ -117,11 +120,4 @@ class TurtleObstacle extends LogObstacle {
     }
   }
   
-}
-
-// i.e. ?
-class StaticObstacle extends Obstacle {
-  public StaticObstacle(Texture t, float x, float y, float w, float h) {
-    super(t, x, y, w, h);
-  }
 }

@@ -43,7 +43,13 @@ Y:
 Screen wrap??? (i.e. going from right edge to left by going right)
 
 
+Ideas for later, if time permits:
 
+// int global_highscore = 0; // set from a text file, that is held from a globally viewable location, i.e. on GitHub (use curl?)
+
+  boolean isCrocodile; // maybe make (another) separate class?, there's also those bot-thingies
+  
+  bonuses
 
 
 */
