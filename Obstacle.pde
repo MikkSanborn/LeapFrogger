@@ -23,7 +23,7 @@ abstract class Obstacle {
 
   void display() {
     noStroke();
-    image(t.currentFrame(), x+w/2, y+h/2, w, h);
+    image(t.currentFrame(), x, y, w, h);
   }
 }
 
@@ -39,10 +39,10 @@ abstract class MoveableObstacle extends Obstacle {
   public void move() {
     super.x+=xs;
     
-    if (super.x-super.w > 500+x_bound) {
-      super.x = -super.w-x_bound;
-    } else if (super.x+super.w < -x_bound) {
-      super.x = 500+x_bound;
+    if (super.x > 500/*+x_bound*/) { // remove the x_bound part, just to make it simpler
+      super.x = -x_bound;
+    } else if (super.x/*+super.w*/ < -x_bound) {
+      super.x = 500/*+x_bound*/; // remove x_bound to match above
     }
     // don't actually set to -x_bound
     // if x>x_bound, x = -x_bound
@@ -56,19 +56,12 @@ abstract class MoveableObstacle extends Obstacle {
 class CarObstacle extends MoveableObstacle {
   float xs;
   
-  public CarObstacle(Texture t, float x, float y, float xs, float x_bound, float w, float h) {
+  public CarObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
     super(t, x, y, w, h, xs, x_bound);
     this.xs = xs;
     this.x_bound = x_bound;
   }
   
-  public void move() {
-    x += xs;
-    
-    if (x > x_bound) {
-      x = -x_bound-w;
-    }
-  }
   // the cars
 }
 

@@ -18,8 +18,27 @@ GameState gameState;
 //   ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 //   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 // ALL OBSTACLE VARS
+ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
+
 // 5 lanes, LOOK AT "THINGIES" TAB FOR INFO
-CarObstacle car_1_0 = null;
+CarObstacle car_1_0 = null; // slow
+CarObstacle car_1_1 = null; // slow
+CarObstacle car_1_2 = null; // slow
+
+CarObstacle car_2_0 = null; // slowest
+CarObstacle car_2_1 = null; // slowest
+CarObstacle car_2_2 = null; // slowest
+CarObstacle car_2_3 = null; // slowest
+
+CarObstacle car_3_0 = null; // slow
+CarObstacle car_3_1 = null; // slow
+CarObstacle car_3_2 = null; // slow
+
+CarObstacle car_4_0 = null; // fastest
+CarObstacle car_4_1 = null; // fastest
+
+CarObstacle car_5_0 = null; // bus (long slow boi)
+CarObstacle car_5_1 = null; // bus (long slow boi)
 
 // Water
 // Logs
@@ -41,7 +60,7 @@ TurtleObstacle turtle_9_3 = null; // 3 two wide, 1 four wide (4 wide)
 LogObstacle log_10_0 = null; // 2 longest, 2 shortest (shortest)
 LogObstacle log_10_1 = null; // 2 longest, 2 shortest (longest)
 LogObstacle log_10_2 = null; // 2 longest, 2 shortest (shortest)
-LogObstacle log_10_3 = null; // 2 longest, 2 shortest (longest)
+// LogObstacle log_10_3 = null; // 2 longest, 2 shortest (longest)
 
 final short maxLives = 3;
 PImage screen_background;
@@ -64,7 +83,7 @@ final int pointsForJump = 10; // jumping forwards
 int load_finished = 0;
 
 void setup() {
-  size(800, 600);
+  size(700, 500);
 
   leap = new LeapMotion(this);
 
@@ -74,7 +93,11 @@ void setup() {
 }
 
 void draw() {
-  //println(mouseX + "   " + mouseY);
-
   showGame();
+}
+
+void keyReleased() {
+  if (key == 'k') {
+    frog.kill();
+  }
 }

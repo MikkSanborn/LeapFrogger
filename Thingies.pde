@@ -1,5 +1,10 @@
 /*
 
+Info:
+https://www.youtube.com/watch?v=WNrz9_Fe-Us
+
+Points: [Info]: 48 sec
+
 Task list:
 Finish all the classes and subclasses with interactability
   - make them fully exist
@@ -33,10 +38,10 @@ Y:
 4 = road 4 (center lane above double yellow, below grey line) fastest
 5 = road 5 (through gray line) whatever
 6 = grey bricks (safe zone)
-7 = water 1 (turtle)
-8 = water 2 (log)
-9 = water 3 (turle)
-10 = water 4 (log)
+7 = water 1 (turtle) fastest spd
+8 = water 2 (log) slow (/middle after, but missing a lane) spd
+9 = water 3 (turle) slow+ spd
+10 = water 4 (log) middle spd
 11 = finish (dark grey bricks w/ holes)
 -1 = off screen/error/not yet shown
 

@@ -1,0 +1,39 @@
+      // ADD ALL IMAGES FOR EACH OBJECT
+      // logs (all of them)
+      // longest new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      // longer new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      // shorter new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+      // shortest new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);
+
+
+
+  /* approx center vals
+   
+   30
+   ?
+   ?
+   ?
+   ?
+   250
+   290
+   330
+   365
+   400
+   440
+   475
+   
+   // approx ranges
+   15-40 // Δ25, c: 32.5
+   // 50-?95-?140-?185-230
+   50-95 // Δ45 c: 72.5
+   95-140 // Δ45 c: 117.5
+   140-185 // Δ45 c: 162.5
+   185-230 // Δ45 c: 207.5
+   230-265 (267?) // Δ35 c: 247.5
+   270-310 // Δ40 c: 290
+   317-347 // Δ30 c: 332
+   355-380 // Δ25 c: 367.5
+   390-420 // Δ30 c: 405
+   425-450 // Δ25 c: 437.5
+   450-500 // Δ50 c: 475
+   */

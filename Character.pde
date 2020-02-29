@@ -10,18 +10,22 @@ class PlayerCharacter extends Obstacle {
   // int loopH, loopV;
   int trackH, trackV;
   // int countH1, countV1, countH2, countV2, num1, num2;
-  int timing = 500;
+  int timing = 800;
   long timeLastInput = 0;
 
   // float xs, ys;
   boolean isAlive;
+  int deathTimer = 0;
 
   public PlayerCharacter(Texture t, float x, float y) {
     super(t, x, y, PlayerCharacter.w, PlayerCharacter.h);
     
+    trackH = 5;
+    trackV = 0;
+
     // 
     isAlive = true;
-    
+
     //for (int i = 0; i<11; i++) {
     //  horizontal[i] = loopH;
     //  vertical[i] = loopV;
@@ -56,9 +60,34 @@ class PlayerCharacter extends Obstacle {
     text("X: " + PX, 0, 120);
     text("Y: " + PY, 0, 150);
   }
-  
+
   void move() {
     // if on log & stuff
+    if (gameState == GameState.Play) {
+      if (super.x > 500 || super.x < 0) {
+        this.kill();
+      }
+    } else if (gameState == GameState.Dead) {
+      deathTimer--;
+      if (deathTimer <= 0) {
+        this.respawn();
+      }
+    }
+  }
+
+  void kill() {
+    gameState = GameState.Dead;
+    deathTimer = 100;
+    // moveTo start, but do that on the "respawn button", if that's a thing?
+    lives--;
+    if (lives <= 0) {
+      // ur dead!
+    }
+  }
+  
+  void respawn() {
+    // moveTo(initpos);
+    moveTo(5, 0);
   }
 
   void control() {
@@ -80,20 +109,20 @@ class PlayerCharacter extends Obstacle {
         PX = roll;
         PY = pitch;
 
-        if (PX>10) {
+        if (PY > 10) {
           timeLastInput = timeNow;
-          trackH ++;
+          trackV--;
+        } else if (PY <= -10) {
+          trackV++;
+          timeLastInput = timeNow;
+        } else if (PX>10) {
+          timeLastInput = timeNow;
+          trackH++;
         } else if (PX <= -10) {
           timeLastInput = timeNow;
           trackH--;
-        } else if (PY > 10) {
-          timeLastInput = timeNow;
-          trackV++;
-        } else if (PY <= -10) {
-          trackV--;
-          timeLastInput = timeNow;
         }
-
+        
         if (trackV > 11) {
           trackV = 11;
         } else if (trackV <0) {
@@ -109,14 +138,13 @@ class PlayerCharacter extends Obstacle {
         //delay(20);
 
         x = getScreenPosX(trackH);
-        println(trackV + "   " + y);
-        y = getScreenPosY(trackV);
+        y = getScreenPosY(trackV)-h/2;
       }
     }
   }
-  
-  void moveTo(float x, float y) {
-    super.x = x;
-    super.y = y;
+
+  void moveTo(int x, int y) {
+    trackH = x;
+    trackV = y;
   }
 }
