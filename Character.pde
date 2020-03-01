@@ -17,6 +17,12 @@ class PlayerCharacter extends Obstacle {
   boolean isAlive;
   boolean isOnGround = false;
   int deathTimer = 0; // counts how long to keep the frog dead, and also for invincibilty frames at the start.
+  int scoringMaxP = 0;
+  int score = 0;
+  boolean forward = true;
+  long maxTime = 150;
+
+
 
   public PlayerCharacter(Texture t, float x, float y) {
     super(t, x, y, PlayerCharacter.w, PlayerCharacter.h);
@@ -159,10 +165,16 @@ class PlayerCharacter extends Obstacle {
 
         if (PY > controlThreshold) {
           timeLastInput = timeNow;
+          scoringMaxP = trackV;
           trackV--;
+          forward = false;
         } else if (PY <= -controlThreshold) {
           trackV++;
           timeLastInput = timeNow;
+          if(scoringMaxP < trackV){
+            score+=10;
+            forward = true;
+          }
         } else if (PX > controlThreshold) { // perhaps we should split them? probably not, but as a precaution or something like that
           timeLastInput = timeNow;
           trackH++;
@@ -172,8 +184,13 @@ class PlayerCharacter extends Obstacle {
         }
       }
 
+    if(trackV == 11){
+      score+=50;
+      score+=(int)((maxTime-timeNow)/2);
+    }
       if (trackV > 11) {
         trackV = 11;
+    
       } else if (trackV <0) {
         trackV = 0;
       }
@@ -187,6 +204,7 @@ class PlayerCharacter extends Obstacle {
       y = getScreenPosY(trackV)-h/2;
     }
   }
+  
 
   void moveTo(int x, int y) {
     trackH = x;
