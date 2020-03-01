@@ -11,6 +11,7 @@ import de.voidplus.leapmotion.*;
 LeapMotion leap; // A LeapMotion controller
 final int targetFrameRate = 20; // The framerate that should be expected of the game.
 GameState gameState;
+final float controlThreshold = 12;
 
 // Game variables
 
@@ -50,12 +51,12 @@ TurtleObstacle turtle_7_2 = null; // 4 wide
 LogObstacle log_8_0 = null; // 2 med sm, 2 med lg (smaller)
 LogObstacle log_8_1 = null; // 2 med sm, 2 med lg (larger)
 LogObstacle log_8_2 = null; // 2 med sm, 2 med lg (smaller)
-LogObstacle log_8_3 = null; // 2 med sm, 2 med lg (croco/larger)
+// LogObstacle log_8_3 = null; // 2 med sm, 2 med lg (croco/larger)
 
 TurtleObstacle turtle_9_0 = null; // 3 two wide, 1 four wide (2 wide)
 TurtleObstacle turtle_9_1 = null; // 3 two wide, 1 four wide (2 wide)
 TurtleObstacle turtle_9_2 = null; // 3 two wide, 1 four wide (2 wide)
-TurtleObstacle turtle_9_3 = null; // 3 two wide, 1 four wide (4 wide)
+// TurtleObstacle turtle_9_3 = null; // 3 two wide, 1 four wide (4 wide)
 
 LogObstacle log_10_0 = null; // 2 longest, 2 shortest (shortest)
 LogObstacle log_10_1 = null; // 2 longest, 2 shortest (longest)
@@ -71,7 +72,6 @@ PlayerCharacter frog;
 short lives = maxLives;
 
 // Score tracking variables
-// int local_highscore = 0; // set from a text file, that is held "locally", or on this computer (in ./data/) : // TO BE IMPLEMENTED //
 int session_highscore = 0;
 int score = 0;
 
@@ -93,6 +93,8 @@ void setup() {
 }
 
 void draw() {
+  println(mouseX + "    " + mouseY);
+  
   showGame();
 }
 

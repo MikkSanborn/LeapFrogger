@@ -1,5 +1,18 @@
 /*
 
+BUG LIST: (note: for bugs, not for missing features)
+
+
+MISSING IMPORTANT FEATURES: (note: not the tiny things, but the really important stuff)
+Frog moves on log
+Scoring points
+Winning when you get to the end
+  When you get the end you are supposed to only go into "white" spots, but rn you can go anywhere (BAD). < -- Add special cases for movement to block going into the wrong area
+
+Resolved bugs (but still test more):
+when you're supposed to respawn, if you're colliding with an obstacle, you will "die" again, and won't respawn
+
+
 Info:
 https://www.youtube.com/watch?v=WNrz9_Fe-Us
 
@@ -56,5 +69,15 @@ Ideas for later, if time permits:
   
   bonuses
 
+
+Notes:
+  Finish areas:
+    50-76
+    142-170
+    236-266
+    331-360
+    425-455
+    
+    48-144
 
 */

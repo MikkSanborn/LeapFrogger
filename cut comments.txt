@@ -1,3 +1,10 @@
+// log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(8), getScreenPosY(8)-15, 112, 30, 1, 144);
+      
+      // turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
+      //turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(373, 176, 64, 15)}), getScreenPosX(2), getScreenPosY(9), 64, 30, 0.6, 600, false);
+      //turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(373, 176, 64, 15)}), getScreenPosX(4), getScreenPosY(9), 64, 30, 0.6, 600, false);
+
+
       // ADD ALL IMAGES FOR EACH OBJECT
       // logs (all of them)
       // longest new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(0), getScreenPosY(2), 300, 30, false);

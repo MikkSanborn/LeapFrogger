@@ -65,20 +65,16 @@ void initStuff() {
 
       log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(8)-15, 112, 30, 1, 144);
       log_8_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(4), getScreenPosY(8)-15, 144, 30, 1, 144);
-      // log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(8), getScreenPosY(8)-15, 112, 30, 1, 144);
-      log_8_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(12), getScreenPosY(8)-15, 144, 30, 1, 144);
+      log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(12), getScreenPosY(8)-15, 144, 30, 1, 144);
 
       turtle_9_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(0), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
       turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
-      // turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
-      //turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(373, 176, 64, 15)}), getScreenPosX(2), getScreenPosY(9), 64, 30, 0.6, 600, false);
-      //turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(373, 176, 64, 15)}), getScreenPosX(4), getScreenPosY(9), 64, 30, 0.6, 600, false);
-      turtle_9_3 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(8), getScreenPosY(9)-15, 128, 30, -1.2, 64, false);
+      turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(8), getScreenPosY(9)-15, 128, 30, -1.2, 64, false);
 
       log_10_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(10)-15, 64, 30, 2.2, 288);
       log_10_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(5), getScreenPosY(10)-15, 64, 30, 2.2, 288);
       log_10_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(10), getScreenPosY(10)-15, 288, 30, 2.2, 288);
-;
+
       // log_10_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(12), getScreenPosY(10)-15, 288, 30, -1.2, 288);
 
       // Add references to each obstacle
@@ -110,12 +106,12 @@ void initStuff() {
       obstacles.add(log_8_0);
       obstacles.add(log_8_1);
       obstacles.add(log_8_2);
-      obstacles.add(log_8_3);
+      // obstacles.add(log_8_3);
 
       obstacles.add(turtle_9_0);
       obstacles.add(turtle_9_1);
       obstacles.add(turtle_9_2);
-      obstacles.add(turtle_9_3);
+      // obstacles.add(turtle_9_3);
 
       obstacles.add(log_10_0);
       obstacles.add(log_10_1);
@@ -149,9 +145,9 @@ void showGame() {
 
   switch (gameState) {
   case Play:
-    drawGame();
-    updateGameFrame();
-    frog.control();
+    drawGame(); // draw game
+    frog.control(); // update frog pos
+    updateGameFrame(); // update all other screen elements' pos', and check for collision or frog in water
 
     fill(255);
     rect(500, 0, 200, height);
@@ -215,21 +211,34 @@ void drawGame() {
     }
   }
   frog.display();
+  
+  // move later
+  fill(0);
+  text("Death time:", 520, 400);
+  text(frog.deathTimer, 520, 425);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void updateGameFrame() {
+  frog.isOnGround = false;
   // change variables (move logs by speed, move frog by speed
   if (frameCount%5 == 0) {
     water_background.nextFrame(); // all frame increments to be done here.
   }
+  
+  // move frog
+  frog.move();
 
   // UPDATE ALL OBSTACLES
-  for (Obstacle o : obstacles)
+  for (Obstacle o : obstacles) {
     if (o instanceof MoveableObstacle)
-      ((MoveableObstacle) o).move();
-
-  frog.move();
+      ((MoveableObstacle) o).move(); // move it
+    frog.collideWith(o); // test if colliding with froggo
+  }
+  
+  if (!frog.isOnGround) {
+    frog.kill();
+  }
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -245,7 +254,7 @@ float getScreenPosY(int tilePosY) { // EXPECT 0-11 (11 is a "special case")
 
   switch (tilePosY) {
   case 0:
-    return 460;
+    return 470;
   case 1:
     return 437.5;
   case 2:

@@ -25,6 +25,12 @@ abstract class Obstacle {
     noStroke();
     image(t.currentFrame(), x, y, w, h);
   }
+  
+  void displayDebug() {
+    noStroke();
+    fill(80, 80, 255, 100);
+    rect(x, y, w, h);
+  }
 }
 
 abstract class MoveableObstacle extends Obstacle {
