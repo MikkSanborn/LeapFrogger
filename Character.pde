@@ -162,6 +162,13 @@ class PlayerCharacter extends Obstacle {
         PX = roll;
         PY = pitch;
 
+     if(PY == 8 || PY==10){ //if on row with logs
+       if(logX-30<PX||PX<logX+30){//if on log
+         PX = logX;//frog X = log X
+       }//NOT WORKING
+     }
+  
+
         if (PY > controlThreshold) {
           timeLastInput = timeNow;
           // scoringMaxP = trackV;

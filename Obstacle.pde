@@ -2,7 +2,7 @@
 abstract class Obstacle {
   float x, y; // tile occuped, top left
   float w, h; // usually 1x1
-
+  float logX;
   Texture t;
 
   public Obstacle(Texture t, float x, float y, float w, float h) {
@@ -76,6 +76,7 @@ class LogObstacle extends MoveableObstacle {
 
   public LogObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
     super(t, x, y, w, h, xs, x_bound);
+    logX = xs;
   }
   
 }
