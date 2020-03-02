@@ -12,6 +12,7 @@ LeapMotion leap; // A LeapMotion controller
 final int targetFrameRate = 20; // The framerate that should be expected of the game.
 GameState gameState;
 final float controlThreshold = 12;
+  int controlDelay = 500;
 
 // Game variables
 
@@ -93,7 +94,7 @@ void setup() {
 }
 
 void draw() {
-  println(mouseX + "    " + mouseY);
+  // println(mouseX + "    " + mouseY);
   
   showGame();
 }

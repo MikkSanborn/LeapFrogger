@@ -10,7 +10,6 @@ class PlayerCharacter extends Obstacle {
   // int loopH, loopV;
   int trackH, trackV;
   // int countH1, countV1, countH2, countV2, num1, num2;
-  int timing = 800;
   long timeLastInput = 0;
 
   // float xs, ys;
@@ -18,7 +17,7 @@ class PlayerCharacter extends Obstacle {
   boolean isOnGround = false;
   int deathTimer = 0; // counts how long to keep the frog dead, and also for invincibilty frames at the start.
   int scoringMaxP = 0;
-  int score = 0;
+  // int score = 0;
   boolean forward = true;
   long maxTime = 150;
 
@@ -125,6 +124,7 @@ class PlayerCharacter extends Obstacle {
       gameState = GameState.Play;
       deathTimer = 0;
       isAlive = true;
+      scoringMaxP = 0;
     }
   }
 
@@ -133,7 +133,7 @@ class PlayerCharacter extends Obstacle {
     // background(255);
 
     long timeNow = millis();
-    if (timeNow-timeLastInput > timing) { // don't accept inputs too quickly
+    if (timeNow-timeLastInput > controlDelay) { // don't accept inputs too quickly
 
       if (keyPressed) {
         if (keyCode == UP) {
@@ -162,19 +162,14 @@ class PlayerCharacter extends Obstacle {
         PX = roll;
         PY = pitch;
 
-
         if (PY > controlThreshold) {
           timeLastInput = timeNow;
-          scoringMaxP = trackV;
+          // scoringMaxP = trackV;
           trackV--;
-          forward = false;
+          // forward = false;
         } else if (PY <= -controlThreshold) {
           trackV++;
           timeLastInput = timeNow;
-          if(scoringMaxP < trackV){
-            score+=10;
-            forward = true;
-          }
         } else if (PX > controlThreshold) { // perhaps we should split them? probably not, but as a precaution or something like that
           timeLastInput = timeNow;
           trackH++;
@@ -184,13 +179,8 @@ class PlayerCharacter extends Obstacle {
         }
       }
 
-    if(trackV == 11){
-      score+=50;
-      score+=(int)((maxTime-timeNow)/2);
-    }
       if (trackV > 11) {
         trackV = 11;
-    
       } else if (trackV <0) {
         trackV = 0;
       }
@@ -203,8 +193,20 @@ class PlayerCharacter extends Obstacle {
       x = getScreenPosX(trackH);
       y = getScreenPosY(trackV)-h/2;
     }
+
+    if (trackV == 11) {
+      score+=50;
+      // score+=(maxTime-timeNow)/2; // do this, but differently
+    }
+    println(scoringMaxP + "   " + trackV);
+    if (scoringMaxP < trackV) {
+      println("------------------- Scored : " + score);
+      score+=10;
+      println("------------------- Scored : " + score);
+      scoringMaxP = trackV;
+    }
   }
-  
+
 
   void moveTo(int x, int y) {
     trackH = x;

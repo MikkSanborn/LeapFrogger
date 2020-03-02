@@ -12,6 +12,8 @@ Winning when you get to the end
 Resolved bugs (but still test more):
 when you're supposed to respawn, if you're colliding with an obstacle, you will "die" again, and won't respawn
 
+MINI-FEATURES:
+Frog faces different direction depending on the last direction that you moved.
 
 Info:
 https://www.youtube.com/watch?v=WNrz9_Fe-Us

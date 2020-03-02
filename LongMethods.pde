@@ -155,6 +155,8 @@ void showGame() {
     fill(0);
     text("Lives remaining:", 520, 200);
     text(lives, 520, 220);
+    text("Score:", 520, 250);
+    text(score, 520, 270);
 
     break;
 
@@ -183,6 +185,20 @@ void showGame() {
   case Dead:
     drawGame();
     updateGameFrame();
+    
+    fill(255, 255, 255);
+    textSize(72);
+    text("You died!", 143, 260);
+    
+    textSize(12);
+    fill(255);
+    rect(500, 0, 200, height);
+
+    fill(0);
+    text("Lives remaining:", 520, 200);
+    text(lives, 520, 220);
+    text("Score:", 520, 250);
+    text(score, 520, 270);
     // respawn / respawn timer
     break;
 
