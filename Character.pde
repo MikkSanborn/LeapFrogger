@@ -8,7 +8,7 @@ class PlayerCharacter extends Obstacle {
   float PX, PY;
   // float carXS, carYS, carYD, carXD;
   // int loopH, loopV;
-  int trackH, trackV;
+  int trackH, trackV, prevTrackH, prevTrackV;
   // int countH1, countV1, countH2, countV2, num1, num2;
   long timeLastInput = 0;
 
@@ -21,10 +21,12 @@ class PlayerCharacter extends Obstacle {
   boolean forward = true;
   long maxTime = 150;
 
-
+  LogObstacle currentLog; // represents the log that you're on right now
 
   public PlayerCharacter(Texture t, float x, float y) {
     super(t, x, y, PlayerCharacter.w, PlayerCharacter.h);
+
+    currentLog = null;
 
     trackH = 5;
     trackV = 0;
@@ -61,12 +63,19 @@ class PlayerCharacter extends Obstacle {
             // this.kill();
           }
         }
+        currentLog =(LogObstacle) o;
 
         isOnGround = true; // if it is interacting with the log, it is on it, so the frog is not on the ground.
       }
     }
 
     // isOnGround = true if not on water, and true if on log over water
+  }
+
+  void moveOnLog() {
+    if (currentLog == null) return;
+
+    super.x+=currentLog.xs;
   }
 
   void display() {
@@ -82,7 +91,7 @@ class PlayerCharacter extends Obstacle {
     //text("Y: " + PY, 0, 150);
   }
 
-  void move() { // primarily to check state-based effects, i.e. if it has fallen in the water.
+  void checkAlive() { // primarily to check state-based effects, i.e. if it has fallen in the water.
     if (trackV <= 6 || trackV >= 11) isOnGround = true;
 
     // Check for some cases
@@ -161,43 +170,50 @@ class PlayerCharacter extends Obstacle {
 
         PX = roll;
         PY = pitch;
+      } // end each hand
 
-     if(PY == 8 || PY==10){ //if on row with logs
-       if(logX-30<PX||PX<logX+30){//if on log
-         PX = logX;//frog X = log X
-       }//NOT WORKING
-     }
-  
+      //if (currentLog.x == PX) {
+      //  PX+=currentLog.xs;
+      //}
 
-        if (PY > controlThreshold) {
-          timeLastInput = timeNow;
-          // scoringMaxP = trackV;
-          trackV--;
-          // forward = false;
-        } else if (PY <= -controlThreshold) {
-          trackV++;
-          timeLastInput = timeNow;
-        } else if (PX > controlThreshold) { // perhaps we should split them? probably not, but as a precaution or something like that
-          timeLastInput = timeNow;
-          trackH++;
-        } else if (PX <= -controlThreshold) {
-          timeLastInput = timeNow;
-          trackH--;
-        }
+      if (PY > controlThreshold) {
+        timeLastInput = timeNow;
+        // scoringMaxP = trackV;
+        trackV--;
+        // forward = false;
+      } else if (PY <= -controlThreshold) {
+        trackV++;
+        timeLastInput = timeNow;
+      } else if (PX > controlThreshold) { // perhaps we should split them? probably not, but as a precaution or something like that
+        timeLastInput = timeNow;
+        trackH++;
+      } else if (PX <= -controlThreshold) {
+        timeLastInput = timeNow;
+        trackH--;
       }
+    } // end time elsapsed statement
 
-      if (trackV > 11) {
-        trackV = 11;
-      } else if (trackV <0) {
-        trackV = 0;
-      }
-      if (trackH >11) {
-        trackH = 11;
-      } else if (trackH <0) {
-        trackH = 0;
+    if (trackV > 11) {
+      trackV = 11;
+    } else if (trackV <0) {
+      trackV = 0;
+    }
+    if (trackH >11) {
+      trackH = 11;
+    } else if (trackH <0) {
+      trackH = 0;
+    }
+
+    if (trackH != prevTrackH) {
+      // check that it hasn't been shifted away, and if it has, slide the trackH by the deltaX
+      if (x - getScreenPosX(trackH) != getScreenPosX(prevTrackH)-getScreenPosX(trackH)) {
+        float diff = x - getScreenPosX(trackH);
+        trackH += (int) (diff/40.0);
       }
 
       x = getScreenPosX(trackH);
+    }
+    if (trackV != prevTrackV) {
       y = getScreenPosY(trackV)-h/2;
     }
 
@@ -205,13 +221,14 @@ class PlayerCharacter extends Obstacle {
       score+=50;
       // score+=(maxTime-timeNow)/2; // do this, but differently
     }
-    println(scoringMaxP + "   " + trackV);
+
     if (scoringMaxP < trackV) {
-      println("------------------- Scored : " + score);
       score+=10;
-      println("------------------- Scored : " + score);
       scoringMaxP = trackV;
     }
+
+    prevTrackV = trackV;
+    prevTrackH = trackH;
   }
 
 

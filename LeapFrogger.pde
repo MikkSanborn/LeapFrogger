@@ -94,8 +94,6 @@ void setup() {
 }
 
 void draw() {
-  // println(mouseX + "    " + mouseY);
-  
   showGame();
 }
 

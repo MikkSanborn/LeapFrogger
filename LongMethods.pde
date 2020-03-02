@@ -145,6 +145,7 @@ void showGame() {
 
   switch (gameState) {
   case Play:
+    frog.currentLog = null;
     drawGame(); // draw game
     frog.control(); // update frog pos
     updateGameFrame(); // update all other screen elements' pos', and check for collision or frog in water
@@ -241,9 +242,6 @@ void updateGameFrame() {
   if (frameCount%5 == 0) {
     water_background.nextFrame(); // all frame increments to be done here.
   }
-  
-  // move frog
-  frog.move();
 
   // UPDATE ALL OBSTACLES
   for (Obstacle o : obstacles) {
@@ -251,6 +249,11 @@ void updateGameFrame() {
       ((MoveableObstacle) o).move(); // move it
     frog.collideWith(o); // test if colliding with froggo
   }
+  
+  // check if alive
+  frog.checkAlive();
+  
+  frog.moveOnLog();
   
   if (!frog.isOnGround) {
     frog.kill();
