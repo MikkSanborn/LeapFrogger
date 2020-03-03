@@ -150,7 +150,9 @@ void showGame() {
   case Play:
     frog.currentLog = null;
     drawGame(); // draw game
-    frog.control(); // update frog pos
+    if (frog.hasScored == 0) {
+      frog.control(); // update frog pos
+    }    
     updateGameFrame(); // update all other screen elements' pos', and check for collision or frog in water
 
     fill(255);
@@ -161,6 +163,19 @@ void showGame() {
     text(lives, 520, 220);
     text("Score:", 520, 250);
     text(score, 520, 270);
+
+    if (frog.hasScored != 0) {
+      frog.hasScored++;
+      fill(255);
+      textSize(72);
+      text("You Scored!", 50, 260);
+      textSize(12);
+      if (frog.hasScored == 50) {
+        frog.hasScored = 0;
+        frog.scoringMaxP = 0;
+        frog.moveTo(5, 0);
+      }
+    }
 
     break;
 

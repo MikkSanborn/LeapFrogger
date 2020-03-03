@@ -5,7 +5,7 @@ class PlayerCharacter extends Obstacle {
   int jumpFrame = 0; // If jumping, count up frames until it gets there, and base the pos and frame off of this (i.e. framenum: jumpFrame/20)
 
   float pitch, roll, p, r;
-  boolean hasScored = false; // represents if the frog has scored points in this life at row 11
+  int hasScored = 0; // represents if the frog has scored points in this life at row 11
   float endPointLeniency = 0.5;
   float PX, PY;
   // float carXS, carYS, carYD, carXD;
@@ -19,7 +19,7 @@ class PlayerCharacter extends Obstacle {
   boolean isAlive;
   boolean isOnGround = false;
   int deathTimer = 0; // counts how long to keep the frog dead, and also for invincibilty frames at the start.
-  int scoringMaxP = 0;
+  int scoringMaxP = 0; // the farthest you've gone in this life so far
   // int score = 0;
   boolean forward = true;
   long maxTime = 150;
@@ -247,9 +247,9 @@ class PlayerCharacter extends Obstacle {
       y = getScreenPosY(trackV)-h/2;
     }
 
-    if (trackV == 11 && !hasScored) {
+    if (trackV == 11 && hasScored == 0) {
       score+=50;
-      hasScored = true;
+      hasScored = 1;
       // score+=(maxTime-timeNow)/2; // do this, but differently
     }
 
