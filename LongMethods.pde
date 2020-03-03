@@ -261,7 +261,7 @@ void updateGameFrame() {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-float getScreenPosX(int tilePosX) { // EXPECT 0-10
+float getScreenPosX(float tilePosX) { // EXPECT 0-10
   // if the board is a 16x16 square, with a border of 12px, return tilePosX*((width-12*$2.0)/16)
   // ref the img. img original size: (256x222), output size = (500x500)
   return 30 + 40*tilePosX; // estimate : gives 30 px padding with 40 px width spaces

@@ -8,7 +8,8 @@ class PlayerCharacter extends Obstacle {
   float PX, PY;
   // float carXS, carYS, carYD, carXD;
   // int loopH, loopV;
-  int trackH, trackV, prevTrackH, prevTrackV;
+  float trackH, prevTrackH;
+  int trackV, prevTrackV;
   // int countH1, countV1, countH2, countV2, num1, num2;
   long timeLastInput = 0;
 
@@ -30,6 +31,7 @@ class PlayerCharacter extends Obstacle {
 
     trackH = 5;
     trackV = 0;
+    prevTrackV = -1;
 
     // 
     isAlive = true;
@@ -49,7 +51,7 @@ class PlayerCharacter extends Obstacle {
   void collideWith(Obstacle o) {
     if (!isColliding(o)) return; // if this isn't colliding
 
-    o.displayDebug();
+    // o.displayDebug();
 
     if (gameState == GameState.Play && deathTimer == 0) { // check if deathTimer == 0, so it isn't dead, and so it isn't "invincible"
       if (o instanceof CarObstacle) {
@@ -75,7 +77,8 @@ class PlayerCharacter extends Obstacle {
   void moveOnLog() {
     if (currentLog == null) return;
 
-    super.x+=currentLog.xs;
+    // super.x+=currentLog.xs;
+    trackH+=currentLog.xs/40.0;
   }
 
   void display() {
@@ -209,6 +212,9 @@ class PlayerCharacter extends Obstacle {
       if (x - getScreenPosX(trackH) != getScreenPosX(prevTrackH)-getScreenPosX(trackH)) {
         float diff = x - getScreenPosX(trackH);
         trackH += (int) (diff/40.0);
+      }
+      if (trackV < 7 || trackV > 10) {
+        trackH = (int) (trackH + 0.5);
       }
 
       x = getScreenPosX(trackH);
