@@ -75,30 +75,32 @@ void initStuff() {
       log_10_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(5), getScreenPosY(10)-15, 64, 30, 2.2, 288);
       log_10_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(10), getScreenPosY(10)-15, 288, 30, 2.2, 288);
 
+      log_10_cheat = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), 0, getScreenPosY(10)-15, 500, 30, 0, 0);
+
       // log_10_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(12), getScreenPosY(10)-15, 288, 30, -1.2, 288);
 
       // Add references to each obstacle
       obstacles.add(car_1_0);
       obstacles.add(car_1_1);
       obstacles.add(car_1_2);
-      
+
       obstacles.add(car_2_0);
       obstacles.add(car_2_1);
       obstacles.add(car_2_2);
       obstacles.add(car_2_3);
-      
+
       obstacles.add(car_3_0);
       obstacles.add(car_3_1);
       obstacles.add(car_3_2);
-      
+
       obstacles.add(car_4_0);
       obstacles.add(car_4_1);
-      
+
       obstacles.add(car_5_0);
       obstacles.add(car_5_1);
-      
+
       // blank area
-      
+
       obstacles.add(turtle_7_0);
       obstacles.add(turtle_7_1);
       obstacles.add(turtle_7_2);
@@ -116,7 +118,8 @@ void initStuff() {
       obstacles.add(log_10_0);
       obstacles.add(log_10_1);
       obstacles.add(log_10_2);
-      // obstacles.add(log_10_3);
+
+      obstacles.add(log_10_cheat);
 
       frog = new PlayerCharacter(new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)}), getScreenPosX(5), getScreenPosY(0));
 
@@ -186,11 +189,11 @@ void showGame() {
   case Dead:
     drawGame();
     updateGameFrame();
-    
+
     fill(255, 255, 255);
     textSize(72);
     text("You died!", 143, 260);
-    
+
     textSize(12);
     fill(255);
     rect(500, 0, 200, height);
@@ -228,7 +231,7 @@ void drawGame() {
     }
   }
   frog.display();
-  
+
   // move later
   fill(0);
   text("Death time:", 520, 400);
@@ -249,12 +252,12 @@ void updateGameFrame() {
       ((MoveableObstacle) o).move(); // move it
     frog.collideWith(o); // test if colliding with froggo
   }
-  
+
   // check if alive
   frog.checkAlive();
-  
+
   frog.moveOnLog();
-  
+
   if (!frog.isOnGround) {
     frog.kill();
   }

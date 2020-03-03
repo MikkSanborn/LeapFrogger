@@ -12,7 +12,7 @@ LeapMotion leap; // A LeapMotion controller
 final int targetFrameRate = 20; // The framerate that should be expected of the game.
 GameState gameState;
 final float controlThreshold = 12;
-  int controlDelay = 500;
+int controlDelay = 500;
 
 // Game variables
 
@@ -62,7 +62,7 @@ TurtleObstacle turtle_9_2 = null; // 3 two wide, 1 four wide (2 wide)
 LogObstacle log_10_0 = null; // 2 longest, 2 shortest (shortest)
 LogObstacle log_10_1 = null; // 2 longest, 2 shortest (longest)
 LogObstacle log_10_2 = null; // 2 longest, 2 shortest (shortest)
-// LogObstacle log_10_3 = null; // 2 longest, 2 shortest (longest)
+LogObstacle log_10_cheat = null; // 2 longest, 2 shortest (longest)
 
 final short maxLives = 3;
 PImage screen_background;
@@ -95,10 +95,9 @@ void setup() {
 
 void draw() {
   showGame();
-}
 
-void keyReleased() {
-  if (key == 'k') {
-    frog.kill();
+  if (keyPressed && key == 'm') {
+    frog.moveTo((mouseX-30)/40.0, 10);
+    println((mouseX-30)/40.0);
   }
 }

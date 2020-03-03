@@ -5,6 +5,8 @@ class PlayerCharacter extends Obstacle {
   int jumpFrame = 0; // If jumping, count up frames until it gets there, and base the pos and frame off of this (i.e. framenum: jumpFrame/20)
 
   float pitch, roll, p, r;
+  boolean hasScored = false; // represents if the frog has scored points in this life at row 11
+  float endPointLeniency = 0.5;
   float PX, PY;
   // float carXS, carYS, carYD, carXD;
   // int loopH, loopV;
@@ -130,14 +132,15 @@ class PlayerCharacter extends Obstacle {
   }
 
   void respawn() {
-    if (!isAlive) {
-      // moveTo(initpos);
-      moveTo(5, 0);
-      gameState = GameState.Play;
-      deathTimer = 0;
-      isAlive = true;
-      scoringMaxP = 0;
-    }
+    // moveTo(initpos);
+    trackH = 5;
+    prevTrackH = 5;
+    trackV = 0;
+    prevTrackV = 0;
+    gameState = GameState.Play;
+    deathTimer = 0;
+    isAlive = true;
+    scoringMaxP = 0;
   }
 
   void control() {
@@ -207,24 +210,46 @@ class PlayerCharacter extends Obstacle {
       trackH = 0;
     }
 
-    if (trackH != prevTrackH) {
+    if (trackH != prevTrackH && trackV != 11) {
       // check that it hasn't been shifted away, and if it has, slide the trackH by the deltaX
       if (x - getScreenPosX(trackH) != getScreenPosX(prevTrackH)-getScreenPosX(trackH)) {
         float diff = x - getScreenPosX(trackH);
         trackH += (int) (diff/40.0);
       }
-      if (trackV < 7 || trackV > 10) {
+      if (trackV < 7) { // allow 11
         trackH = (int) (trackH + 0.5);
       }
 
       x = getScreenPosX(trackH);
     }
     if (trackV != prevTrackV) {
+      if (trackV == 11 && prevTrackV == 10) {
+        if (trackH > .425-endPointLeniency && trackH < .425+endPointLeniency) {
+          trackH = .425;
+          x = getScreenPosX(trackH);
+        } else if (trackH > 2.75-endPointLeniency && trackH < 2.75+endPointLeniency) {
+          trackH = 2.75;
+          x = getScreenPosX(trackH);
+        } else if (trackH > 5.125-endPointLeniency && trackH < 5.125+endPointLeniency) {
+          trackH = 5.125;
+          x = getScreenPosX(trackH);
+        } else if (trackH > 7.525-endPointLeniency && trackH < 7.525+endPointLeniency) {
+          trackH = 7.525;
+          x = getScreenPosX(trackH);
+        } else if (trackH > 9.9-endPointLeniency && trackH < 9.9+endPointLeniency) {
+          trackH = 9.9;
+          x = getScreenPosX(trackH);
+        } else {
+          this.kill();
+        }
+        // .425, 2.75, 5.125, 7.525, 8.85
+      }
       y = getScreenPosY(trackV)-h/2;
     }
 
-    if (trackV == 11) {
+    if (trackV == 11 && !hasScored) {
       score+=50;
+      hasScored = true;
       // score+=(maxTime-timeNow)/2; // do this, but differently
     }
 
@@ -238,7 +263,7 @@ class PlayerCharacter extends Obstacle {
   }
 
 
-  void moveTo(int x, int y) {
+  void moveTo(float x, int y) {
     trackH = x;
     trackV = y;
   }
