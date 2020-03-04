@@ -293,6 +293,7 @@ void showScoreStuff() {
   if (lives == -1) {
     score = 0;
     lives = maxLives;
+    posScored = new boolean[] {false, false, false, false, false};
   }
 }
 
