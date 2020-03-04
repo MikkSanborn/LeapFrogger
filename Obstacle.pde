@@ -24,7 +24,7 @@ abstract class Obstacle {
     noStroke();
     image(t.currentFrame(), x, y, w, h);
   }
-  
+
   void displayDebug() {
     noStroke();
     fill(80, 80, 255, 100);
@@ -40,14 +40,20 @@ abstract class MoveableObstacle extends Obstacle {
     this.xs = xs;
     this.x_bound = x_bound;
   }
-  
+
   public void move() {
     super.x+=xs;
-    
+
     if (super.x > 500/*+x_bound*/) { // remove the x_bound part, just to make it simpler
       super.x = -x_bound;
+      if (this instanceof TurtleObstacle) {
+        ((TurtleObstacle) this).toSurface();
+      }
     } else if (super.x/*+super.w*/ < -x_bound) {
       super.x = 500/*+x_bound*/; // remove x_bound to match above
+      if (this instanceof TurtleObstacle) {
+        ((TurtleObstacle) this).toSurface();
+      }
     }
     // don't actually set to -x_bound
     // if x>x_bound, x = -x_bound
@@ -60,13 +66,13 @@ abstract class MoveableObstacle extends Obstacle {
 // car
 class CarObstacle extends MoveableObstacle {
   float xs;
-  
+
   public CarObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
     super(t, x, y, w, h, xs, x_bound);
     this.xs = xs;
     this.x_bound = x_bound;
   }
-  
+
   // the cars
 }
 
@@ -76,46 +82,56 @@ class LogObstacle extends MoveableObstacle {
   public LogObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound) {
     super(t, x, y, w, h, xs, x_bound);
   }
-  
 }
 
 class TurtleObstacle extends LogObstacle {
   // eventually make a blink out method.
   boolean blinksOut;
-  
+
   public TurtleObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound, boolean blinksOut) {
     super(t, x, y, w, h, xs, x_bound);
     this.blinksOut = blinksOut;
   }
-  
+
   public boolean canBlinkOut() {
     return blinksOut;
   }
-  
+
   public boolean blinkOut() {
     if (!blinksOut) {
       return false;
     } else {
       super.t.nextFrame();
-      
+
       return true;
     }
   }
-  
+
+  public void toSurface() {
+    while (super.t.currentFrameNum() != 0) {
+      super.t.nextFrame();
+    }
+  }
+
   public void move() {
     super.move();
-    
+
+    if (blinksOut && super.t.currentFrameNum() == 0 && super.x < 400) {
+      if (Math.random() < 0.005) {
+        blinkOut();
+      }
+    }
+
     // if it has started to blink out, and it's been 5 frames since last update
-    if (super.t.currentFrameNum() != 0 && frameCount%5 == 0) {
+    if (super.t.currentFrameNum() != 0 && super.t.currentFrameNum() != 7 && frameCount%20 == 0) {
       super.t.nextFrame(); // sink it
       if (super.t.currentFrameNum() == 0) { // if this has gone through the full animation,
-        super.x = getScreenPosX(-1); // remove from the screen; it has "sunken"
-        super.y = getScreenPosY(-1);
+        // super.x = getScreenPosX(-1); // remove from the screen; it has "sunken"
+        // super.y = getScreenPosY(-1);
         // --====----===---===---===---=--=-=-=-=-=-=-=-=-=-=-=-= ========  
         // >>> They need to still be there, just not "interactable". Keep them on screen, and have them reappear,
         // but don't forget that the reverse sequence needs to be shown to "reappear" them
       }
     }
   }
-  
 }
