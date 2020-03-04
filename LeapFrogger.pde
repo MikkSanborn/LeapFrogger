@@ -8,7 +8,7 @@ CarObstacle(Texture t, float x, float y, float xs, float ys, float x_bound, floa
 import de.voidplus.leapmotion.*;
 
 /*/////////////////////////////////////////////*/
-/*///////*/ boolean cheatMode = true; /*///////*/
+/*///////*/ boolean cheatMode = false; /*///////*/
 /*/////////////////////////////////////////////*/
 
 // Program variables

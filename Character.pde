@@ -175,6 +175,13 @@ class PlayerCharacter extends Obstacle {
         }
       }
 
+      p = 0;
+      r = 0;
+      pitch = 0;
+      roll = 0;
+      PX = 0;
+      PY = 0;
+
       for (Hand hand : leap.getHands()) { // for each hand??? maybe only do one...
         // y = hand.getYaw();
         p = hand.getPitch();
@@ -240,22 +247,27 @@ class PlayerCharacter extends Obstacle {
       if (trackV == 11 && prevTrackV == 10) {
         if (trackH > .425-endPointLeniency && trackH < .425+endPointLeniency && !posScored[0]) {
           trackH = .425;
+          score+=50;
           posScored[0] = true;
           x = getScreenPosX(trackH);
         } else if (trackH > 2.75-endPointLeniency && trackH < 2.75+endPointLeniency && !posScored[1]) {
           trackH = 2.75;
+          score+=50;
           posScored[1] = true;
           x = getScreenPosX(trackH);
         } else if (trackH > 5.125-endPointLeniency && trackH < 5.125+endPointLeniency && !posScored[2]) {
           trackH = 5.125;
+          score+=50;
           posScored[2] = true;
           x = getScreenPosX(trackH);
         } else if (trackH > 7.525-endPointLeniency && trackH < 7.525+endPointLeniency && !posScored[3]) {
           trackH = 7.525;
+          score+=50;
           posScored[3] = true;
           x = getScreenPosX(trackH);
         } else if (trackH > 9.9-endPointLeniency && trackH < 9.9+endPointLeniency && !posScored[4]) {
           trackH = 9.9;
+          score+=50;
           posScored[4] = true;
           x = getScreenPosX(trackH);
         } else {
@@ -267,7 +279,7 @@ class PlayerCharacter extends Obstacle {
     }
 
     if (trackV == 11 && hasScored == 0 && gameState == GameState.Play && isAlive) {
-      score+=50;
+      // score+=50;
       hasScored = 1;
       if (posScored[0] && posScored[1] && posScored[2] && posScored[3] && posScored[4]) {
         score+=lives*100;
