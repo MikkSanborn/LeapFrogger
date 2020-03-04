@@ -10,27 +10,7 @@ void initStuff() {
       screen_background.resize(500, 500);
       water_background = new Texture(new PImage[] {sheet.get(1, 228, 256, 80), sheet.get(1, 228+85, 256, 80), sheet.get(1, 228+85*2, 256, 80), sheet.get(1, 228+85*3, 256, 80), sheet.get(1, 228+85*4, 256, 80), sheet.get(1, 228+85*5, 256, 80), sheet.get(1, 228+85*6, 256, 80), sheet.get(1, 228+85*7, 256, 80)}); // 8 total, 5px down from the prev
       // other image loads
-
-      // ADD ALL OBSTACLES
-
-      /*
-       0 = start (brown brick)
-       1 = road 1 (bottom lane) slowest
-       2 = road 2 (lane below double yellow) fast
-       3 = road 3 (lane above double yellow) middle
-       4 = road 4 (center lane above double yellow, below grey line) fastest
-       5 = road 5 (through gray line) whatever
-       6 = grey bricks (safe zone)
-       7 = water 1 (turtle)
-       8 = water 2 (log)
-       9 = water 3 (turle)
-       10 = water 4 (log)
-       11 = finish (dark grey bricks w/ holes)
-       -1 = off screen/error/not yet shown
-       */
-
-      // 3 4 3 2 2
-      // public CarObstacle(Texture t, float x, float y, float w, float h, float xs, float x_bound)
+      frogComplete = new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)});
 
       car_1_0 = new CarObstacle(new Texture(new PImage[] {sheet.get(357, 196, 23, 15)}), getScreenPosX(0), getScreenPosY(1)-12.5, 40, 25, -1.2, 40); // slow l
       car_1_1 = new CarObstacle(new Texture(new PImage[] {sheet.get(357, 196, 23, 15)}), getScreenPosX(4), getScreenPosY(1)-12.5, 40, 25, -1.2, 40); // slowest, slow
@@ -63,9 +43,9 @@ void initStuff() {
       turtle_7_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(10), getScreenPosY(7)-15, 128, 30, -2.5, 144, false);
       // turtle_7_3 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(0), getScreenPosY(0), 111, 111, 0.6, false);
 
-      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(0), getScreenPosY(8)-15, 112, 30, 1, 144);
+      log_8_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 78, 56, 15)}), getScreenPosX(-1), getScreenPosY(8)-15, 112, 30, 1, 144);
       log_8_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(4), getScreenPosY(8)-15, 144, 30, 1, 144);
-      log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(12), getScreenPosY(8)-15, 144, 30, 1, 144);
+      log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(10), getScreenPosY(8)-15, 144, 30, 1, 144);
 
       turtle_9_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(0), getScreenPosY(9)-15, 64, 30, -1.2, 128, false);
       turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 128, false);
@@ -224,7 +204,34 @@ void drawGame() {
 
   fill(0, 0, 255);
   for (int i = 0; i < 5; i++) {
-    if (posScored[i]) rect(100*i, 0, 100, 100);
+    if (frameCount % 10 == 0) {
+      frogComplete.nextFrame();
+    }
+    if (posScored[i]) {
+      rect(100*i, 0, 100, 100);
+      // draw frog
+      // .425, 2.75, 5.125, 7.525, 9.9
+      PImage frogImg = frogComplete.currentFrame();
+      float w = PlayerCharacter.w;
+      float h = PlayerCharacter.h;
+      switch (i) {
+      case 0:
+        image(frogImg, getScreenPosX(.425), getScreenPosY(11)-h/2, w, h);
+        break;
+      case 1:
+        image(frogImg, getScreenPosX(2.75), getScreenPosY(11)-h/2, w, h);
+        break;
+      case 2:
+        image(frogImg, getScreenPosX(5.125), getScreenPosY(11)-h/2, w, h);
+        break;
+      case 3:
+        image(frogImg, getScreenPosX(7.525), getScreenPosY(11)-h/2, w, h);
+        break;
+      case 4:
+        image(frogImg, getScreenPosX(9.9), getScreenPosY(11)-h/2, w, h);
+        break;
+      }
+    }
   }
   // draw the background image here
   // image(screen_background, 0, 0, screen_background.width*2, screen_background.height*2);
@@ -268,10 +275,6 @@ void updateGameFrame() {
   frog.checkAlive();
 
   frog.moveOnLog();
-
-  if (!frog.isOnGround) {
-    frog.kill();
-  }
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,3 +1,4 @@
+// A "frame_manager" class
 class Texture {
   // take an array of input images, and display them based on the frame of the animation
 

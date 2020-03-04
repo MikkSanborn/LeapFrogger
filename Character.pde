@@ -99,6 +99,10 @@ class PlayerCharacter extends Obstacle {
   void checkAlive() { // primarily to check state-based effects, i.e. if it has fallen in the water.
     if (trackV <= 6 || trackV >= 11) isOnGround = true;
 
+    if (!frog.isOnGround) {
+      frog.kill();
+    }
+
     // Check for some cases
     if (gameState == GameState.Play) { // If you're playing...
       if (super.x > 500 || super.x < 0) { // ...and the frog is off the screen,
@@ -155,7 +159,7 @@ class PlayerCharacter extends Obstacle {
     long timeNow = millis();
     if (timeNow-timeLastInput > controlDelay) { // don't accept inputs too quickly
 
-      if (keyPressed) {
+      if (cheatMode && keyPressed) {
         if (keyCode == UP) {
           trackV++;
           timeLastInput = timeNow;
@@ -257,7 +261,7 @@ class PlayerCharacter extends Obstacle {
         } else {
           this.kill();
         }
-        // .425, 2.75, 5.125, 7.525, 8.85
+        // .425, 2.75, 5.125, 7.525, 9.9
       }
       y = getScreenPosY(trackV)-h/2;
     }
@@ -265,6 +269,13 @@ class PlayerCharacter extends Obstacle {
     if (trackV == 11 && hasScored == 0 && gameState == GameState.Play && isAlive) {
       score+=50;
       hasScored = 1;
+      if (posScored[0] && posScored[1] && posScored[2] && posScored[3] && posScored[4]) {
+        score+=lives*100;
+        lives = 0;
+        this.kill();
+        this.respawn();
+      }
+      // check if ALL endpoints have been scored, add 100 pnts for each life left.
       // score+=(maxTime-timeNow)/2; // do this, but differently
     }
 

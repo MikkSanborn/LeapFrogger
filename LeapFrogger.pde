@@ -7,6 +7,10 @@ CarObstacle(Texture t, float x, float y, float xs, float ys, float x_bound, floa
 // Required libraries
 import de.voidplus.leapmotion.*;
 
+/*/////////////////////////////////////////////*/
+/*///////*/ boolean cheatMode = true; /*///////*/
+/*/////////////////////////////////////////////*/
+
 // Program variables
 LeapMotion leap; // A LeapMotion controller
 final int targetFrameRate = 20; // The framerate that should be expected of the game.
@@ -73,6 +77,7 @@ boolean[] posScored = {false, false, false, false, false};
 
 // Player related variables
 PlayerCharacter frog;
+Texture frogComplete;
 short lives = maxLives;
 
 // Score tracking variables
@@ -96,15 +101,14 @@ void setup() {
   PImage sheet = loadImage("sheet.png");
   frog = new PlayerCharacter(new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)}), getScreenPosX(5), getScreenPosY(0));
 
-  println(load_finished);
+  println("> LeapFrogger by Mikk Sanborn and Kaia Lee-Guest");
 }
 
 void draw() {
   showGame();
 
-  if (keyPressed && key == 'm') {
+  if (cheatMode && keyPressed && key == 'm') {
     frog.moveTo((mouseX-30)/40.0, 10);
     println((mouseX-30)/40.0);
   }
-  println(frog.y);
 }
