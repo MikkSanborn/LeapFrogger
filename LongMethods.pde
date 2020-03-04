@@ -67,15 +67,15 @@ void initStuff() {
       log_8_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(4), getScreenPosY(8)-15, 144, 30, 1, 144);
       log_8_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 58, 72, 15)}), getScreenPosX(12), getScreenPosY(8)-15, 144, 30, 1, 144);
 
-      turtle_9_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(0), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
-      turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 64, false);
-      turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(8), getScreenPosY(9)-15, 128, 30, -1.2, 64, false);
+      turtle_9_0 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(0), getScreenPosY(9)-15, 64, 30, -1.2, 128, false);
+      turtle_9_1 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 157, 32, 15), sheet.get(299, 117, 32, 15), sheet.get(336, 117, 32, 15), sheet.get(373, 117, 32, 15), sheet.get(262, 176, 32, 15), sheet.get(299, 176, 32, 15), sheet.get(336, 176, 32, 15), sheet.get(373, 176, 32, 15)}), getScreenPosX(4), getScreenPosY(9)-15, 64, 30, -1.2, 128, false);
+      turtle_9_2 = new TurtleObstacle(new Texture(new PImage[] {sheet.get(262, 117, 64, 15), sheet.get(331, 117, 64, 15), sheet.get(400, 117, 64, 15), sheet.get(469, 117, 64, 15), sheet.get(262, 137, 64, 15), sheet.get(331, 137, 64, 15), sheet.get(400, 137, 64, 15), sheet.get(469, 137, 64, 15)}), getScreenPosX(8), getScreenPosY(9)-15, 128, 30, -1.2, 128, false);
 
       log_10_0 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(0), getScreenPosY(10)-15, 64, 30, 2.2, 288);
       log_10_1 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 98, 32, 15)}), getScreenPosX(5), getScreenPosY(10)-15, 64, 30, 2.2, 288);
       log_10_2 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(10), getScreenPosY(10)-15, 288, 30, 2.2, 288);
 
-      log_10_cheat = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), 0, getScreenPosY(10)-15, 500, 30, 0, 0);
+      // log_10_cheat = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), 0, getScreenPosY(10)-15, 500, 30, 0, 0);
 
       // log_10_3 = new LogObstacle(new Texture(new PImage[] {sheet.get(262, 38, 144, 15)}), getScreenPosX(12), getScreenPosY(10)-15, 288, 30, -1.2, 288);
 
@@ -119,9 +119,7 @@ void initStuff() {
       obstacles.add(log_10_1);
       obstacles.add(log_10_2);
 
-      obstacles.add(log_10_cheat);
-
-      frog = new PlayerCharacter(new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)}), getScreenPosX(5), getScreenPosY(0));
+      // obstacles.add(log_10_cheat);
 
       for (int i = 0; i < water_background.frames.length; i++) {
         water_background.frames[i].resize(500, 180);
@@ -158,11 +156,6 @@ void showGame() {
     fill(255);
     rect(500, 0, 200, height);
 
-    fill(0);
-    text("Lives remaining:", 520, 200);
-    text(lives, 520, 220);
-    text("Score:", 520, 250);
-    text(score, 520, 270);
 
     if (frog.hasScored != 0) {
       frog.hasScored++;
@@ -176,6 +169,8 @@ void showGame() {
         frog.moveTo(5, 0);
       }
     }
+
+    showScoreStuff();
 
     break;
 
@@ -213,11 +208,7 @@ void showGame() {
     fill(255);
     rect(500, 0, 200, height);
 
-    fill(0);
-    text("Lives remaining:", 520, 200);
-    text(lives, 520, 220);
-    text("Score:", 520, 250);
-    text(score, 520, 270);
+    showScoreStuff();
     // respawn / respawn timer
     break;
 
@@ -230,6 +221,11 @@ void showGame() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 void drawGame() {
   background(255);
+
+  fill(0, 0, 255);
+  for (int i = 0; i < 5; i++) {
+    if (posScored[i]) rect(100*i, 0, 100, 100);
+  }
   // draw the background image here
   // image(screen_background, 0, 0, screen_background.width*2, screen_background.height*2);
   image(screen_background, 0, 0);
@@ -247,10 +243,10 @@ void drawGame() {
   }
   frog.display();
 
-  // move later
-  fill(0);
-  text("Death time:", 520, 400);
-  text(frog.deathTimer, 520, 425);
+  //// move later
+  //fill(0);
+  //text("Death time:", 520, 400);
+  //text(frog.deathTimer, 520, 425);
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -275,6 +271,28 @@ void updateGameFrame() {
 
   if (!frog.isOnGround) {
     frog.kill();
+  }
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+void showScoreStuff() {
+
+  textSize(12);
+  fill(0);
+  text("Lives remaining:", 520, 200);
+  text(lives, 520, 220);
+  text("Score:", 520, 250);
+  text(score, 520, 270);
+
+  if (score > highscore) {
+    highscore = score;
+  }
+  text("Highscore:", 520, 300);
+  text(highscore, 520, 320);
+
+  if (lives == -1) {
+    score = 0;
+    lives = maxLives;
   }
 }
 

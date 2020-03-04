@@ -62,18 +62,21 @@ TurtleObstacle turtle_9_2 = null; // 3 two wide, 1 four wide (2 wide)
 LogObstacle log_10_0 = null; // 2 longest, 2 shortest (shortest)
 LogObstacle log_10_1 = null; // 2 longest, 2 shortest (longest)
 LogObstacle log_10_2 = null; // 2 longest, 2 shortest (shortest)
-LogObstacle log_10_cheat = null; // 2 longest, 2 shortest (longest)
+// LogObstacle log_10_cheat = null; // 2 longest, 2 shortest (longest)
 
 final short maxLives = 3;
 PImage screen_background;
 Texture water_background;
+
+// to see where you have already scored
+boolean[] posScored = {false, false, false, false, false};
 
 // Player related variables
 PlayerCharacter frog;
 short lives = maxLives;
 
 // Score tracking variables
-int session_highscore = 0;
+int highscore = 0;
 int score = 0;
 
 // Scoring variables/values
@@ -90,6 +93,9 @@ void setup() {
 
   initStuff();
 
+  PImage sheet = loadImage("sheet.png");
+  frog = new PlayerCharacter(new Texture(new PImage[] {sheet.get(262, 18, 16, 16), sheet.get(283, 18, 16, 16), sheet.get(304, 18, 16, 16), sheet.get(324, 18, 16, 16)}), getScreenPosX(5), getScreenPosY(0));
+
   println(load_finished);
 }
 
@@ -100,4 +106,5 @@ void draw() {
     frog.moveTo((mouseX-30)/40.0, 10);
     println((mouseX-30)/40.0);
   }
+  println(frog.y);
 }

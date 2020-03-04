@@ -132,15 +132,20 @@ class PlayerCharacter extends Obstacle {
   }
 
   void respawn() {
-    // moveTo(initpos);
-    trackH = 5;
-    prevTrackH = 5;
-    trackV = 0;
-    prevTrackV = 0;
-    gameState = GameState.Play;
-    deathTimer = 0;
-    isAlive = true;
-    scoringMaxP = 0;
+    if (!isAlive) {
+      // moveTo(initpos);
+      trackH = 5;
+      prevTrackH = 5;
+      trackV = 0;
+      prevTrackV = 0;
+      super.x = getScreenPosX(trackH);
+      super.y = getScreenPosY(trackV)-h/2;
+      gameState = GameState.Play;
+      deathTimer = 0;
+      isAlive = true;
+      scoringMaxP = 0;
+      hasScored = 0;
+    }
   }
 
   void control() {
@@ -206,8 +211,13 @@ class PlayerCharacter extends Obstacle {
     }
     if (trackH >11) {
       trackH = 11;
-    } else if (trackH <0) {
-      trackH = 0;
+    } else if (trackH < 0) {
+      // if >l <r
+      if (abs(trackH-prevTrackH) <= 0.25) {
+        // don't change it, the frog is on the log
+      } else {
+        trackH = 0;
+      }
     }
 
     if (trackH != prevTrackH && trackV != 11) {
@@ -224,20 +234,25 @@ class PlayerCharacter extends Obstacle {
     }
     if (trackV != prevTrackV) {
       if (trackV == 11 && prevTrackV == 10) {
-        if (trackH > .425-endPointLeniency && trackH < .425+endPointLeniency) {
+        if (trackH > .425-endPointLeniency && trackH < .425+endPointLeniency && !posScored[0]) {
           trackH = .425;
+          posScored[0] = true;
           x = getScreenPosX(trackH);
-        } else if (trackH > 2.75-endPointLeniency && trackH < 2.75+endPointLeniency) {
+        } else if (trackH > 2.75-endPointLeniency && trackH < 2.75+endPointLeniency && !posScored[1]) {
           trackH = 2.75;
+          posScored[1] = true;
           x = getScreenPosX(trackH);
-        } else if (trackH > 5.125-endPointLeniency && trackH < 5.125+endPointLeniency) {
+        } else if (trackH > 5.125-endPointLeniency && trackH < 5.125+endPointLeniency && !posScored[2]) {
           trackH = 5.125;
+          posScored[2] = true;
           x = getScreenPosX(trackH);
-        } else if (trackH > 7.525-endPointLeniency && trackH < 7.525+endPointLeniency) {
+        } else if (trackH > 7.525-endPointLeniency && trackH < 7.525+endPointLeniency && !posScored[3]) {
           trackH = 7.525;
+          posScored[3] = true;
           x = getScreenPosX(trackH);
-        } else if (trackH > 9.9-endPointLeniency && trackH < 9.9+endPointLeniency) {
+        } else if (trackH > 9.9-endPointLeniency && trackH < 9.9+endPointLeniency && !posScored[4]) {
           trackH = 9.9;
+          posScored[4] = true;
           x = getScreenPosX(trackH);
         } else {
           this.kill();
@@ -247,7 +262,7 @@ class PlayerCharacter extends Obstacle {
       y = getScreenPosY(trackV)-h/2;
     }
 
-    if (trackV == 11 && hasScored == 0) {
+    if (trackV == 11 && hasScored == 0 && gameState == GameState.Play && isAlive) {
       score+=50;
       hasScored = 1;
       // score+=(maxTime-timeNow)/2; // do this, but differently
